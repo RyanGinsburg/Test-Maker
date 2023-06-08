@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<h1 class="center">My Tests</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th scope="col">Test ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Questions</th>
+            <th scope="col">Subject</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in tdatabase %}
+            <tr>
+                <td>{{ row["id"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["questions"] }}</td>
+                <td>{{ row["subject"] }}</td>
+                <td>
+                    <form method="post">
+                        {% set id = row["id"] %}
+                        <input action="/my_tests" type="hidden" id="test_id" name="test_id" value="{{ id }}">
+                        <button action="/my_tests" class="btn btn-primary" id="btest_id" name="btest_id" type="submit">Edit</button>
+                        <input action="/my_tests" type="hidden" id="test_id" name="test_id" value="{{ id }}">
+                        <button action="/my_test" class="btn btn-primary" id="bdelete" name="bdelete" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

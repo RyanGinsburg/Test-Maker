@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Test
+{% endblock %}
+
+{% block main %}
+    <h2>Test</h2>
+    <h3>Test ID: {{ test_id }}</h3>
+    <hr>
+    {% for question in database %}
+        <div>
+            <h4>Question {{ question["questions"] }}</h4>
+            <p>Question: {{ question["question"] }}</p>
+            <p>Choice 1: {{ question["choice1"] }}</p>
+            <p>Choice 2: {{ question["choice2"] }}</p>
+            <p>Choice 3: {{ question["choice3"] }}</p>
+            <p>Choice 3: {{ question["choice4"] }}</p>
+            <p>Correct Answer: {{ question["correct"] }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+    <form action="/change" method="post">
+        <button class="btn btn-primary" type="submit">Edit</button>
+        <input type="hidden" name="test_id" value="{{ test_id }}">
+    </form>
+{% endblock %}

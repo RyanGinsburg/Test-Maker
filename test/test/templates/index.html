@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<h1 class="center">{{username}} History</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th scope="col">Test ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Questions</th>
+            <th scope="col">Score</th>
+            <th scope="col">Correct Answers</th>
+            <th scope="col">Incorrect Answers</th>
+            <th scope="col">Date (New to Old)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in database %}
+            <tr>
+                <td>{{ row["test_id"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["subject"] }}</td>
+                <td>{{ row["questions"] }}</td>
+                <td>{{ row["percentage_score"] }}</td>
+                <td>{{ row["score"] }}</td>
+                <td>{{ row["incorrect"] }}</td>
+                <td>{{ row["date"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

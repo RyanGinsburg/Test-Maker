@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Test
+{% endblock %}
+
+{% block main %}
+    <form action="/create" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Test Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="questions" name="questions" placeholder="Number of Questions" type="number" min="1">
+        </div>
+        <select name="subject">
+            <option value="" disbaled selected hidden>Subject</option>
+            <option value="math">Math</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="history">History</option>
+            <option value="world_language">World Language</option>
+            <option value="other">Other</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Test Score
+{% endblock %}
+
+{% block main %}
+    </div>
+    <div class="mb-3">
+        <h2>{{ name }}</h2>
+        <h3>Test ID: {{ test_id }}</h3>
+    </div>
+    <div class="mb-3">
+        <h3>Results:</h3>
+        <p>Total Questions: {{ questions }}</p>
+        <p>Correct Answers: {{ score }}</p>
+        <p>Incorrect Answers: {{ incorrect }}</p>
+        <p>Score: {{ percentage_score }}%</p>
+    </div>
+{% endblock %}

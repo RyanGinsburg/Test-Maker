@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Take Test
+{% endblock %}
+
+{% block main %}
+    </div>
+    <form action="/take_test" method="post">
+        <div class="mb-3">
+            <h2>{{ name }}</h2>
+            <h3>Test ID: {{ test_id }}</h3>
+            <input type="hidden" name="test_id" value="{{ test_id }}">
+        </div>
+        <div class="mb-3">
+            <h3>{{ questions }} Questions</h3>
+        </div>
+        <hr>
+        {% for i in range(1, questions + 1) %}
+            <div>
+                <div class="container d-flex justify-content-center" style="display: flex; flex-direction: row;">
+                    <h4>Question {{ i }}</h4>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Question: {{ database[i-1]['question'] }}</p>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <input type="radio" name="1answer{{ i }}" value="choice1">
+                    <p>A: {{ database[i-1]['choice1'] }}</p>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <input type="radio" name="2answer{{ i }}" value="choice2">
+                    <p>B: {{ database[i-1]['choice2'] }}</p>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <input type="radio" name="3answer{{ i }}" value="choice3">
+                    <p>C: {{ database[i-1]['choice3'] }}</p>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <input type="radio" name="4answer{{ i }}" value="choice4">
+                    <p>D: {{ database[i-1]['choice4'] }}</p>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}

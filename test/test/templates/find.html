@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Test
+{% endblock %}
+
+{% block main %}
+    <form action="/find" method="post">
+        <h2>Take Test</h2>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Test Name" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create Test
+{% endblock %}
+
+{% block main %}
+    </div>
+    <form action="/edit" method="post">
+        <div class="mb-3">
+            <h2>{{ name }}</h2>
+            <h3>Test ID: {{ test_id }}</h3>
+            <input type="hidden" name="test_id" value="{{ test_id }}">
+        </div>
+        <div class="mb-3">
+            <h3>{{ questions }} Questions</h3>
+        </div>
+        <hr>
+        {% for i in range(1, questions + 1) %}
+            <div>
+                <div class="container d-flex justify-content-center" style="display: flex; flex-direction: row;">
+                    <h4>Question {{ i }}</h4>
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Question:</p><input name="question{{ i }}" value="{{ database[i-1]['question'] }}">
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Choice1:</p><input name="{{ i }}choice1" value="{{ database[i-1]['choice1'] }}">
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Choice2:</p><input name="{{ i }}choice2" value="{{ database[i-1]['choice2'] }}">
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Choice3:</p><input name="{{ i }}choice3" value="{{ database[i-1]['choice3'] }}">
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Choice4:</p><input name="{{ i }}choice4" value="{{ database[i-1]['choice4'] }}">
+                </div>
+                <div class="mb-3" style="display: flex; flex-direction: row;">
+                    <p>Correct Answer:</p>
+                    <select name="correct{{ i }}">
+                        {% if database[i-1]['correct'] == "" or database[i-1]['correct'] is none %}
+                            <option value="" disbaled selected hidden>Select Correct Choice</option>
+                        {% else %}
+                            <option value="{{ database[i-1]['correct'] }}" selected hidden>{{ database[i-1]['correct'] }}</option>
+                        {% endif %}
+                        <option value="choice1">Choice 1</option>
+                        <option value="choice2">Choice 2</option>
+                        <option value="choice3">Choice 3</option>
+                        <option value="choice4">Choice 4</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Apply Changes</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Iterate over each input field
+            var inputs = document.querySelectorAll('input');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value === '') {
+                    alert("Please fill in all the input fields.");
+                    return false; // Prevent form submission
+                }
+            }
+            return true; // Allow form submission
+        }
+    </script>
+{% endblock %}
